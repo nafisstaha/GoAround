@@ -1,4 +1,20 @@
-﻿@*page title*@
+﻿@*get a list from categories*@
+@model IEnumerable<GoAround.Models.Category>
+
+@*page title*@
 @{ ViewData["Title"] = "Categories"; }
 
 <h1>Find you favorite place:</h1>
+
+@*the category list*@
+<ul>
+    //loop through the models and display category names
+    @foreach (var j in Model)
+    {
+        <li>
+            <a asp-controller="Categories" asp-action="Browse" asp-route-category="@j.Name">
+                @j.Name
+            </a>
+        </li>
+    }
+</ul>
