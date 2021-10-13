@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoAround.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,17 @@ namespace GoAround.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            //generating a list
+            var categories = new List<Category>();
+
+            //category's loop
+            for (var i = 1; i < 6; i++)
+            {
+                categories.Add(new Category { CategoryId = i, Name = "Category " + i.ToString() });
+            }
+
+            //view categories
+            return View(categories);
         }
 
         //a method for displaying the list when the user click a category
