@@ -9,6 +9,7 @@ namespace GoAround.Controllers
 {
     public class CategoriesController : Controller
     {
+        //index category
         public IActionResult Index()
         {
             //generating a list
@@ -24,6 +25,7 @@ namespace GoAround.Controllers
             return View(categories);
         }
 
+        //browse category
         //a method for displaying the list when the user click a category
         public IActionResult Browse(string category)
         {
@@ -36,6 +38,12 @@ namespace GoAround.Controllers
             //store the input parameter for displaying
             ViewBag.category = category;
 
+            return View();
+        }
+
+        //create category
+        public IActionResult Create()
+        {
             return View();
         }
     }
