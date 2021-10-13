@@ -1,12 +1,14 @@
-﻿@model GoAround.Models.Category
+﻿@*page title*@
+@{ ViewData["Title"] = "Create"; }
+
+@model GoAround.Models.Category
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Create your beutiful place:</h1>
 
-<h4>Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,6 +18,11 @@
                 <label asp-for="CategoryId" class="control-label"></label>
                 <input asp-for="CategoryId" class="form-control" />
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
