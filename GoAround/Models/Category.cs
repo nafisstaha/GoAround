@@ -19,5 +19,8 @@ namespace GoAround.Models
         //Required name with a new error message
         [Required(ErrorMessage = "We'll happy, if know the name of your place :)")]
         public string Name { get; set; }
+
+        //child model for places
+        public List<Place> Places { get; set; }
     }
 }
