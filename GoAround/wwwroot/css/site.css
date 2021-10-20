@@ -9,13 +9,13 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    color: #CDDC39;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #CDDC39;
+    border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
@@ -59,8 +59,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    /*google fonts*/
+    font-family: 'Patrick Hand', cursive;
 }
 .footer {
   position: absolute;
@@ -72,4 +74,13 @@ body {
 
 .thumb {
     width: 100px;
+}
+
+/*change bootstrap*/
+.navbar-dark {
+    background-color: #00BCD4;
+}
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: #B2EBF2;
 }
