@@ -123,7 +123,7 @@ namespace GoAround.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlaceId,CategoryId,Name,Photo,Country,City,Address,Discription,UserId")] Place place)
+        public async Task<IActionResult> Edit(int id, [Bind("PlaceId,CategoryId,Name,Country,City,Address,Discription,UserId")] Place place, IFormFile Photo)
         {
             if (id != place.PlaceId)
             {
@@ -134,7 +134,15 @@ namespace GoAround.Controllers
             {
                 try
                 {
-                    _context.Update(place);
+                        //upload Photo - replace placeholer photo
+                        if (Photo != null)
+                        {
+                            //store the unique file name
+                            var fileName = UploadPhoto(Photo);
+                            //new place object
+                            place.Photo = fileName;
+                        }
+                        _context.Update(place);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
