@@ -10,24 +10,25 @@ namespace GoAround.Models
     {
         public int PlaceId { get; set; }
 
+        [Required]
         public int CategoryId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        [Required]
-        public string Type { get; set; }
-
         public string Photo { get; set; }
 
+        [MaxLength(50)]
         public string Country { get; set; }
 
+        [MaxLength(50)]
         public string City { get; set; }
 
         public string Address { get; set; }
 
         public string Discription { get; set; }
 
+        [Required]
         public int UserId { get; set; }
 
         //childs

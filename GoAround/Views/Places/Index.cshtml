@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<GoAround.Models.Place>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Places";
 }
 
-<h1>Index</h1>
+<h1>Places</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,10 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Photo)
@@ -33,12 +36,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.Discription)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
+
+
             <th></th>
         </tr>
     </thead>
@@ -47,9 +46,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Photo)
