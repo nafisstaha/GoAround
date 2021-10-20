@@ -9,32 +9,33 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+
+<table class="table sortable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Category)
+                <a href="#">Category</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                <a href="#">UserId</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                <a href="#">Name</a>
+            </th>
+            @*photo*@
+            <th class="sorttable_nosort">
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Photo)
+                <a href="#">Country</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                <a href="#">City</a>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
+            @*address*@
+            <th class="sorttable_nosort">
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Discription)
+            @*description*@
+            <th class="sorttable_nosort">
             </th>
 
 
@@ -48,7 +49,14 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Photo)
+                @if (item.Photo != null)
+                {
+                    <img src="~/img/places/@item.Photo" alt="Place Photo" class="thumb" />
+                }
+                else
+                {
+                    <img src="~/img/places/placeholder.png" alt="Place Photo" class="thumb" />
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Country)

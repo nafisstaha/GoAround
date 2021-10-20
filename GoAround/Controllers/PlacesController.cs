@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoAround.Data;
 using GoAround.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace GoAround.Controllers
 {
@@ -46,6 +48,27 @@ namespace GoAround.Controllers
             return View(place);
         }
 
+        private static string UploadPhoto(IFormFile Photo)
+        {
+            //get temp location of uploaded file
+            var filePath = Path.GetTempFileName();
+
+            //unique name for image
+            var fileName = Guid.NewGuid() + "-" + Photo.FileName;
+
+            //destination folder to work on any system
+            var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\places\\" + fileName;
+
+            //execute
+            using (var stream = new FileStream(uploadPath, FileMode.Create))
+            {
+                Photo.CopyTo(stream);
+            }
+
+            return fileName;
+        }
+
+
         // GET: Places/Create
         public IActionResult Create()
         {
@@ -58,10 +81,18 @@ namespace GoAround.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlaceId,CategoryId,Name,Type,Photo,Country,City,Address,Discription,UserId")] Place place)
+        public async Task<IActionResult> Create([Bind("PlaceId,CategoryId,Name,Photo,Country,City,Address,Discription,UserId")] Place place, IFormFile Photo)
         {
             if (ModelState.IsValid)
             {
+                //upload Photo
+                if (Photo != null)
+                {
+                    //store the unique file name
+                    var fileName = UploadPhoto(Photo);
+                    //new place object
+                    place.Photo = fileName;
+                }
                 _context.Add(place);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -92,7 +123,7 @@ namespace GoAround.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlaceId,CategoryId,Name,Type,Photo,Country,City,Address,Discription,UserId")] Place place)
+        public async Task<IActionResult> Edit(int id, [Bind("PlaceId,CategoryId,Name,Photo,Country,City,Address,Discription,UserId")] Place place)
         {
             if (id != place.PlaceId)
             {
