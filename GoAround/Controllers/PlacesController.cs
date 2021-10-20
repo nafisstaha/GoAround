@@ -22,7 +22,8 @@ namespace GoAround.Controllers
         // GET: Places
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Places.Include(p => p.Category).OrderBy(p => p.Category.Name);
+            //make an order for names and categories
+            var applicationDbContext = _context.Places.Include(p => p.Category).OrderBy(p => p.Category.Name).ThenBy(p => p.Name);
             return View(await applicationDbContext.ToListAsync());
         }
 
