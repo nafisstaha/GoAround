@@ -22,7 +22,7 @@ namespace GoAround.Controllers
         // GET: Places
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Places.Include(p => p.Category);
+            var applicationDbContext = _context.Places.Include(p => p.Category).OrderBy(p => p.Category.Name);
             return View(await applicationDbContext.ToListAsync());
         }
 
