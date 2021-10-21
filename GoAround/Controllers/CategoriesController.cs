@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GoAround.Data;
 using GoAround.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoAround.Controllers
 {
+    //make controllers available for only authenticated users
+    [Authorize]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,6 +29,9 @@ namespace GoAround.Controllers
         }
 
         // GET: Categories/Details/5
+
+        //public mathode
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
