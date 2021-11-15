@@ -9,9 +9,11 @@ using GoAround.Data;
 using GoAround.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoAround.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class PlacesController : Controller
     {
         private readonly ApplicationDbContext _context;

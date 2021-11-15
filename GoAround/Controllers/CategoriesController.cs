@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace GoAround.Controllers
 {
     //make controllers available for only authenticated users
-    [Authorize]
+    [Authorize (Roles = "Administrator")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
