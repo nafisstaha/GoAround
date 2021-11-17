@@ -37,6 +37,15 @@ namespace GoAround
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            //Google Login with NuGet packag
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration.GetValue<string>("Authentication:Google:ClientId");
+                    options.ClientSecret = Configuration.GetValue<string>("Authentication:Google:ClientSecret");
+                });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
