@@ -45,6 +45,11 @@ namespace GoAround
                     options.ClientId = Configuration.GetValue<string>("Authentication:Google:ClientId");
                     options.ClientSecret = Configuration.GetValue<string>("Authentication:Google:ClientSecret");
                 });
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
 
         }
 
