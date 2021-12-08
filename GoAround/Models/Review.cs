@@ -19,5 +19,11 @@ namespace GoAround.Models
 
         public Place Place { get; set; }
 
+        public MyPlace MyPlace { get; set; }
+
+        public User User { get; set; }
+
+
+
     }
 }

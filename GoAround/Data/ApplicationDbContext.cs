@@ -13,6 +13,7 @@ namespace GoAround.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Place> Places { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public object MyPlaces { get; internal set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

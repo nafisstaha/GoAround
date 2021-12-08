@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace GoAround.Models
 {
-    public class Place
+    public class MyPlace
     {
-        public int PlaceId { get; set; }
+        public int MyPlaceId { get; set; }
 
         [Required]
         public int CategoryId { get; set; }
-
-        [Required]
-        public string Name { get; set; }
 
         public string Photo { get; set; }
 
@@ -29,14 +26,23 @@ namespace GoAround.Models
         public string Discription { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public int Quantity { get; set; }
 
-        //childs
-        public List<Review> Reviews { get; set; }
+        [Required]
+        public decimal Rate { get; set; }
 
-        //parent category
-        public Category Category { get; set; }
+        [Required]
+        public string UserId { get; set; }
+
+        [Required]
+        public int PlaceId { get; set; }
+
+        public Place Place { get; set; }
+
         public User User { get; set; }
 
+        public List<Review> Reviews { get; set; }
+
+        public Category Category { get; set; }
     }
 }

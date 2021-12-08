@@ -1,0 +1,45 @@
+﻿@model IEnumerable<GoAround.Models.Place>
+
+
+@{ ViewData["Title"] = "Our Places"; }
+
+<h1>Our @ViewBag.Category</h1>
+
+<section class="row card-group">
+
+    @foreach (var p in Model)
+    {
+
+        <div class="col-sm-6 col-lg-4 mb-3">
+            <div class="card mb-4 text-center h-100">
+                <div class="card-body">
+
+                    @*name*@
+                    <h5>@p.Name</h5>
+
+                    @*country and city*@
+                    <h6>@p.Country, @p.City</h6>
+
+                    @*show photo if exist*@
+                    @if (p.Photo != null)
+                    {
+                        <img src="~/img/places/@p.Photo" alt="Place Photo" class="thumb" />
+                    }
+                    else
+                    {
+                        <img src="~/img/places/placeholder.png" alt="Place Photo" class="thumb" />
+                    }
+
+                    @*show my places button*@
+                    <form method="post" action="/MyPlaces/AddToMyPlaces">
+                        <input type="hidden" name="PlaceId" value="@p.PlaceId" />
+                        <button class="btn btn-primary mt-4">Add to my places!</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    }
+
+</section> 

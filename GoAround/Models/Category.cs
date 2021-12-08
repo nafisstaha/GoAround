@@ -22,5 +22,7 @@ namespace GoAround.Models
 
         //child model for places
         public List<Place> Places { get; set; }
+        public List<MyPlace> MyPlaces { get; set; }
+
     }
 }
