@@ -1,5 +1,6 @@
 ﻿using GoAround.Data;
 using GoAround.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace GoAround.Controllers
             var rate = review.Rate;
 
             // the user, user's places
-            var userId = "sample-user";
+            var userId = GetUserId();
 
             // save to MyPlaces table in db
             var myPlace = new MyPlace
@@ -66,6 +67,29 @@ namespace GoAround.Controllers
 
             // return to MyPlaceList page
             return RedirectToAction("MyPlacesList");
+        }
+
+        private string GetUserId()
+        {
+            // user has the place in her/his list
+            if (HttpContext.Session.GetString("UserId") != null)
+            {
+                return HttpContext.Session.GetString("UserId");
+            }
+            else
+            {
+                // user doesn't have a place list, logged in
+                if (User.Identity.IsAuthenticated)
+                {
+                    HttpContext.Session.SetString("UserId", User.Identity.Name);
+                }
+                else
+                {
+                    // user doesn't have a place list, not logged in
+                    HttpContext.Session.SetString("UserId", Guid.NewGuid().ToString());
+                }
+                return HttpContext.Session.GetString("UserId");
+            }
         }
     }
 }

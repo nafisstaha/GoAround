@@ -14,6 +14,9 @@ namespace GoAround.Models
         public string Comment { get; set; }
 
         [Required]
+        public string UserId { get; set; }
+
+        [Required]
         [Range(1, 5)]
         public decimal Rate { get; set; }
 

@@ -9,6 +9,8 @@ namespace GoAround.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        internal object places;
+
         //global ref to models for db
         public DbSet<Category> Categories { get; set; }
         public DbSet<Place> Places { get; set; }
