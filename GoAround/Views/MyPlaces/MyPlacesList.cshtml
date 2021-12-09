@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GoAround.Models.MyPlace>
+
+@{ ViewData["Title"] = "Your Places List";
+}
+
+<h1>Your Places List</h1>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Place.Name</td>
+                <td>@c.Place.User</td>
+                <td>
+                    <a asp-controller="MyPlace" asp-action="RemoveFromMyPlaceList"
+                       asp-route-id="@c.MyPlaceId" onclick="return confirmDelete()">
+                        Remove
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
